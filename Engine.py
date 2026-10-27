@@ -348,4 +348,6 @@ def run_pipeline(query, tfidf, semantic=None, chat_client=None, top_k=TOP_K, api
             generator_name = "template fallback"
 
     valid, invalid = check_citations(draft, [r["ticket_id"] for r in results])
-    return PipelineResult(query=query, results=results,
+    return PipelineResult(query=query, results=results, retriever_name=retriever.name, generator_name=generator_name,
+                          threshold=retriever.threshold, draft=draft, warnings=warnings, valid_citations=valid,
+                          invalid_citations=invalid, injection_flagged=flagged)
